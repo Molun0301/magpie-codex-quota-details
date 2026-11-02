@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN" data-view-state="boot">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>额度详情</title><link rel="stylesheet" href="style.css?v=1.5.0"><script src="_magpie/bridge.js"></script><script src="pricing.js?v=1.5.0" defer></script><script src="lifecycle.js?v=1.5.0" defer></script><script src="app.js?v=1.5.0" defer></script></head>
+<body><main>
+  <header><div><p class="eyebrow">CODEX · 周期用量</p><h1>额度详情</h1><p class="subtitle">本周期用了多少，还能用多少。</p></div><div class="actions"><button id="toggle-pricing" type="button" aria-expanded="false" aria-controls="pricing-panel">模型价格</button><button id="refresh" type="button">刷新显示 ↻</button></div></header>
+  <div class="status"><span id="status" role="status">正在读取本机统计…</span><span>每分钟采集 · 页面自动更新</span></div>
+  <section id="pricing-panel" class="pricing-panel" aria-label="模型价格设置" hidden>
+    <h2>模型价格</h2><p class="pricing-intro">直接编辑下表中的单价，单位为美元 / 百万词元。保存后重算本周期全部金额。</p>
+    <div class="pricing-controls">
+      <label class="model-select">选择模型<select id="model-select" name="model-select"></select></label>
+      <label class="mode-select">服务模式<select id="mode-select" name="mode-select"><option value="standard">标准</option><option value="fast">快速（fast / priority）</option><option value="ultrafast">极速（ultrafast）</option></select></label>
+      <label class="long-context-toggle"><input id="long-context" type="checkbox" checked><span>启用长上下文加价</span></label>
+    </div>
+    <div id="price-view"></div>
+    <div class="pricing-actions"><button id="save-pricing" type="button">保存此模式价格</button><button id="reset-pricing" type="button">恢复此模式默认价</button><span id="pricing-status" role="status"></span></div>
+  </section>
+  <section id="cards" aria-label="账号额度"></section>
+  <section class="explain"><h2>这些数字怎么计算？</h2><p>预估总额度 = 本周期已用 ÷ 官方已用比例；预估剩余额度 = 预估总额度 − 本周期已用。</p><p>每个模型按标准、快速、极速服务模式分别套用对应单价。关闭某个模式的长上下文加价时，该模式所有记录都使用基础价。</p><p>优先采用实际响应档位；原生会话按当时请求设置识别，无法确认服务端是否降级。缺失档位标为未记录，按标准价暂估。</p><p>金额是按本页模型价格折算的用量价值，并非订阅账单或可提现余额。快速模式的订阅额度消耗倍率与接口价格不同，官方额度百分比直接读取。词元包含缓存输入，缓存不会重复相加。</p><p>只统计已关联账号的本机记录，周期由官方重置时间回推，用量截取至同一额度快照时刻。其他设备用量和记录缺失都会影响估算。</p></section>
+</main></body></html>

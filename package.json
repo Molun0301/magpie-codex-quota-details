@@ -1,0 +1,22 @@
+{
+  "name": "magpie-codex-quota-details",
+  "version": "1.6.0",
+  "description": "Codex 周期额度：已用费用、词元、官方百分比与预估满额",
+  "private": true,
+  "magpie": {
+    "page": {
+      "title": "额度详情",
+      "file": "page/index.html",
+      "icon": "page/icon.svg"
+    },
+    "permissions": []
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Molun0301/magpie-codex-quota-details.git"
+  },
+  "scripts": {
+    "test": "python3 -m unittest discover -s tests -v && node --test tests/*.test.cjs"
+  }
+}
